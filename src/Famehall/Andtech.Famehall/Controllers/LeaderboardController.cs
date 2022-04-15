@@ -2,14 +2,22 @@ using Andtech.Famehall.Models;
 using Microsoft.AspNetCore.Mvc;
 using SQLite;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Andtech.Famehall.Controllers
 {
+
 	[ApiController]
 	[Route("api/leaderboards")]
 	public class LeaderboardController : ControllerBase
 	{
 		private string databasePath = "players.db";
+		private ProfanityFilter profanityFilter;
+
+		public LeaderboardController()
+		{
+			profanityFilter = new ProfanityFilter("profanity.txt");
+		}
 
 		[HttpGet]
 		public IEnumerable<Score> GetScores(int count = 10)
@@ -33,9 +41,15 @@ namespace Andtech.Famehall.Controllers
 		[HttpPost]
 		public async Task<IActionResult> PutScore(ScoreRequest request)
 		{
+			var name = request.name;
+			name = profanityFilter.Cleanse(name);
+			name = Regex.Replace(name, @"\s", string.Empty);
+			name = Regex.Replace(name, @"\d", string.Empty);
+			name = name.ToUpperInvariant();
+
 			var score = new Score()
 			{
-				Name = request.name.ToUpperInvariant(),
+				Name = name,
 				Points = request.points,
 				Timestamp = DateTime.UtcNow,
 			};

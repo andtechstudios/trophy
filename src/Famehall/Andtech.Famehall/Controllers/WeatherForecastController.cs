@@ -1,4 +1,6 @@
+using Andtech.Famehall.Models;
 using Microsoft.AspNetCore.Mvc;
+using SQLite;
 
 namespace Andtech.Famehall.Controllers
 {
@@ -6,28 +8,33 @@ namespace Andtech.Famehall.Controllers
 	[Route("[controller]")]
 	public class WeatherForecastController : ControllerBase
 	{
-		private static readonly string[] Summaries = new[]
-		{
-		"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-	};
-
-		private readonly ILogger<WeatherForecastController> _logger;
-
-		public WeatherForecastController(ILogger<WeatherForecastController> logger)
-		{
-			_logger = logger;
-		}
 
 		[HttpGet(Name = "GetWeatherForecast")]
-		public IEnumerable<WeatherForecast> Get()
+		public IEnumerable<Score> GetWeatherForecast()
 		{
-			return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+			Score[] scores = new Score[0];
+			using (var connection = new SQLiteConnection("players.db"))
 			{
-				Date = DateTime.Now.AddDays(index),
-				TemperatureC = Random.Shared.Next(-20, 55),
-				Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-			})
-			.ToArray();
+				scores = connection.Table<Score>().ToArray();
+			}
+
+			return scores;
+		}
+
+		[HttpPost(Name = "PutScore")]
+		public async Task<IActionResult> PutScore(Score score)
+		{
+			var token = CancellationToken.None;
+			score.timestamp = DateTime.UtcNow;
+
+			using (var connection = new SQLiteConnection("players.db"))
+			{
+				connection.CreateTable<Score>();
+
+				connection.Insert(score);
+			}
+
+			return CreatedAtAction(nameof(PutScore), new { }, score);
 		}
 	}
 }

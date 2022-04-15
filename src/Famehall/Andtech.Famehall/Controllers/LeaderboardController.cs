@@ -6,13 +6,13 @@ using System.IO;
 namespace Andtech.Famehall.Controllers
 {
 	[ApiController]
-	[Route("[controller]")]
-	public class WeatherForecastController : ControllerBase
+	[Route("api/leaderboards")]
+	public class LeaderboardController : ControllerBase
 	{
 		private string databasePath = "players.db";
 
-		[HttpGet(Name = "GetWeatherForecast")]
-		public IEnumerable<Score> GetWeatherForecast(int count = 10)
+		[HttpGet]
+		public IEnumerable<Score> GetScores(int count = 10)
 		{
 			if (!System.IO.File.Exists(databasePath))
 			{
@@ -30,7 +30,7 @@ namespace Andtech.Famehall.Controllers
 			return scores;
 		}
 
-		[HttpPost(Name = "PutScore")]
+		[HttpPost]
 		public async Task<IActionResult> PutScore(ScoreRequest request)
 		{
 			var score = new Score()

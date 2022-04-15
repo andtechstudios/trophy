@@ -16,7 +16,7 @@ namespace Andtech.Famehall.Controllers
 
 		public LeaderboardController()
 		{
-			profanityFilter = new ProfanityFilter("profanity.txt");
+			profanityFilter = new ProfanityFilter();
 		}
 
 		[HttpGet]
@@ -41,8 +41,11 @@ namespace Andtech.Famehall.Controllers
 		[HttpPost]
 		public async Task<IActionResult> PutScore(ScoreRequest request)
 		{
+			var token = CancellationToken.None;
+
 			var name = request.name;
-			name = profanityFilter.Cleanse(name);
+			name = await profanityFilter.SanitizePurgoMalum(name, cancellationToken: token);
+			Console.WriteLine("'" + name + "'");
 			name = Regex.Replace(name, @"\s", string.Empty);
 			name = Regex.Replace(name, @"\d", string.Empty);
 			name = name.ToUpperInvariant();
@@ -54,7 +57,6 @@ namespace Andtech.Famehall.Controllers
 				Timestamp = DateTime.UtcNow,
 			};
 
-			var token = CancellationToken.None;
 			using (var connection = new SQLiteConnection(databasePath))
 			{
 				connection.CreateTable<Score>();

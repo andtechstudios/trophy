@@ -1,6 +1,7 @@
 using Andtech.Famehall.Models;
 using Microsoft.AspNetCore.Mvc;
 using SQLite;
+using System.IO;
 
 namespace Andtech.Famehall.Controllers
 {
@@ -8,33 +9,46 @@ namespace Andtech.Famehall.Controllers
 	[Route("[controller]")]
 	public class WeatherForecastController : ControllerBase
 	{
+		private string databasePath = "players.db";
 
 		[HttpGet(Name = "GetWeatherForecast")]
-		public IEnumerable<Score> GetWeatherForecast()
+		public IEnumerable<Score> GetWeatherForecast(int count = 10)
 		{
-			Score[] scores = new Score[0];
-			using (var connection = new SQLiteConnection("players.db"))
+			if (!System.IO.File.Exists(databasePath))
 			{
-				scores = connection.Table<Score>().ToArray();
+				return Enumerable.Empty<Score>();
+			}
+
+			Score[] scores = new Score[0];
+			using (var connection = new SQLiteConnection(databasePath))
+			{
+				scores = connection.Table<Score>()
+					.Take(count)
+					.ToArray();
 			}
 
 			return scores;
 		}
 
 		[HttpPost(Name = "PutScore")]
-		public async Task<IActionResult> PutScore(Score score)
+		public async Task<IActionResult> PutScore(ScoreRequest request)
 		{
-			var token = CancellationToken.None;
-			score.timestamp = DateTime.UtcNow;
+			var score = new Score()
+			{
+				Name = request.name.ToUpperInvariant(),
+				Points = request.points,
+				Timestamp = DateTime.UtcNow,
+			};
 
-			using (var connection = new SQLiteConnection("players.db"))
+			var token = CancellationToken.None;
+			using (var connection = new SQLiteConnection(databasePath))
 			{
 				connection.CreateTable<Score>();
 
 				connection.Insert(score);
 			}
 
-			return CreatedAtAction(nameof(PutScore), new { }, score);
+			return CreatedAtAction(nameof(PutScore), score);
 		}
 	}
 }

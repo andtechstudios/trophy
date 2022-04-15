@@ -8,9 +8,9 @@ namespace Andtech.Famehall.Models
 	{
 		[PrimaryKey, AutoIncrement]
 		public int Id { get; set; }
-		public string name { get; set; }
-		public DateTime timestamp { get; set; }
+		public string Name { get; set; }
+		public DateTime Timestamp { get; set; }
 		[Indexed]
-		public long score { get; set; }
+		public long Points { get; set; }
 	}
 }

@@ -1,19 +1,8 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:6.0
-WORKDIR /source
 
-# copy csproj and restore as distinct layers
-COPY *.sln .
-COPY aspnetapp/*.csproj ./aspnetapp/
-RUN dotnet restore
-
-# copy everything else and build app
-COPY aspnetapp/. ./aspnetapp/
-WORKDIR /source/aspnetapp
-RUN dotnet publish -c release -o /app --no-restore
+RUN dotnet publish src/Famehall/Andtech.Famehall/Andtech.Famehall.csproj -c release -o app
 
 # final stage/image
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-WORKDIR /app
-COPY --from=build /app ./
-EXPOSE 3000
-ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+FROM mcr.microsoft.com/dotnet/core/aspnet:6.0
+EXPOSE 5000
+ENTRYPOINT ["app/Andtech.Famehall.Server"]

@@ -1,3 +1,5 @@
+using Andtech.Famehall.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,5 +23,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Require authorization
+app.UseMiddleware<ApiKeyMiddleware>();
 
 app.Run();

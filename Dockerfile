@@ -1,8 +1,15 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:6.0
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
-RUN dotnet publish src/Famehall/Andtech.Famehall/Andtech.Famehall.csproj -c release -o app
+WORKDIR /source
 
-# final stage/image
-FROM mcr.microsoft.com/dotnet/core/aspnet:6.0
+COPY src/ .
+
+RUN dotnet publish Famehall/Andtech.Famehall/Andtech.Famehall.csproj -c release -o /app
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+COPY --from=build /app ./
+RUN rm /app/appsettings.Development.json
+
 EXPOSE 5000
-ENTRYPOINT ["app/Andtech.Famehall.Server"]
+#ENTRYPOINT ["/app/Andtech.Famehall"]

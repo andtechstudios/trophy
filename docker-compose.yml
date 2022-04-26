@@ -1,6 +1,6 @@
 services:
   web:
-    image: famehall
+    image: ghcr.io/andtechstudios/famehall
     ports:
       - "5000:5000"
     restart: always

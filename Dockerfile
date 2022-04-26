@@ -4,7 +4,7 @@ WORKDIR /source
 
 COPY src/ .
 
-RUN dotnet publish Famehall/Andtech.Famehall/Andtech.Famehall.csproj -c release -o /app
+RUN dotnet publish Andtech.Famehall/Andtech.Famehall.csproj -c release -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app

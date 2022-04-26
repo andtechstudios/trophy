@@ -25,6 +25,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Require authorization
-app.UseMiddleware<ApiKeyMiddleware>();
+//app.UseMiddleware<ApiKeyMiddleware>();
 
 app.Run();

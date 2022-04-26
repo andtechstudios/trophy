@@ -11,7 +11,6 @@
 		}
 		public async Task InvokeAsync(HttpContext context)
 		{
-
 			if (!context.Request.Headers.TryGetValue(APIKEYNAME, out var expectedKey))
 			{
 				context.Response.StatusCode = 401;
@@ -21,7 +20,7 @@
 
 			if (string.IsNullOrEmpty(expectedKey))
 			{
-				return;
+				await _next(context);
 			}
 
 			var appSettings = context.RequestServices.GetRequiredService<IConfiguration>();

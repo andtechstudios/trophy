@@ -4,8 +4,10 @@ services:
     volumes:
       - famehall:/app
     ports:
-      - "5000:5000"
+      - 5000:5000
     restart: always
+    environment:
+      AUTH_TOKEN: secret
 
 volumes:
   famehall:

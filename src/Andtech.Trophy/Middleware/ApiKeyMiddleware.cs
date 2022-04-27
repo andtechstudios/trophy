@@ -17,14 +17,14 @@
 				if (!context.Request.Headers.TryGetValue("ApiKey", out var requestApiKey))
 				{
 					context.Response.StatusCode = 401;
-					await context.Response.WriteAsync("Api Key was not provided. (Using ApiKeyMiddleware) ");
+					await context.Response.WriteAsync("ApiKey not provided");
 					return;
 				}
 
 				if (!requestApiKey.Equals(Session.Instance.ApiKey))
 				{
 					context.Response.StatusCode = 401;
-					await context.Response.WriteAsync("Unauthorized client. (Using ApiKeyMiddleware)");
+					await context.Response.WriteAsync("Unauthorized");
 					return;
 				}
 			}

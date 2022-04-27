@@ -1,6 +1,11 @@
 services:
   web:
     image: ghcr.io/andtechstudios/famehall
+    volumes:
+      - famehall:/app
     ports:
       - "5000:5000"
     restart: always
+
+volumes:
+  famehall:

@@ -45,7 +45,6 @@ namespace Andtech.Trophy.Controllers
 
 			var name = request.name;
 			name = await profanityFilter.SanitizeAsync(name, cancellationToken: token);
-			Console.WriteLine("'" + name + "'");
 			name = Regex.Replace(name, @"\s", string.Empty);
 			name = Regex.Replace(name, @"\d", string.Empty);
 			name = name.ToUpperInvariant();
@@ -56,6 +55,8 @@ namespace Andtech.Trophy.Controllers
 				Points = request.points,
 				Timestamp = DateTime.UtcNow,
 			};
+
+			Directory.CreateDirectory(Path.GetDirectoryName(databasePath));
 
 			using (var connection = new SQLiteConnection(databasePath))
 			{

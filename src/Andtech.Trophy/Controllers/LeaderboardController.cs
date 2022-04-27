@@ -12,11 +12,11 @@ namespace Andtech.Trophy.Controllers
 	public class LeaderboardController : ControllerBase
 	{
 		private string databasePath = "data/leaderboard.db";
-		private ProfanityFilter profanityFilter;
+		private PergoMalumProfanityFilter profanityFilter;
 
 		public LeaderboardController()
 		{
-			profanityFilter = new ProfanityFilter();
+			profanityFilter = new PergoMalumProfanityFilter();
 		}
 
 		[HttpGet]
@@ -44,7 +44,7 @@ namespace Andtech.Trophy.Controllers
 			var token = CancellationToken.None;
 
 			var name = request.name;
-			name = await profanityFilter.SanitizePurgoMalum(name, cancellationToken: token);
+			name = await profanityFilter.SanitizeAsync(name, cancellationToken: token);
 			Console.WriteLine("'" + name + "'");
 			name = Regex.Replace(name, @"\s", string.Empty);
 			name = Regex.Replace(name, @"\d", string.Empty);

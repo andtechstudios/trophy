@@ -1,4 +1,4 @@
-﻿namespace Andtech.Famehall.Middleware
+﻿namespace Andtech.Trophy.Middleware
 {
 
 	public class ApiKeyMiddleware

@@ -1,5 +1,5 @@
-using Andtech.Famehall;
-using Andtech.Famehall.Middleware;
+using Andtech.Trophy;
+using Andtech.Trophy.Middleware;
 
 Session.Instance = new Session();
 

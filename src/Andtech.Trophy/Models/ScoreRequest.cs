@@ -1,4 +1,4 @@
-﻿namespace Andtech.Famehall.Models
+﻿namespace Andtech.Trophy.Models
 {
 
 	public class ScoreRequest

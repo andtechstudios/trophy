@@ -1,10 +1,10 @@
-using Andtech.Famehall.Models;
+using Andtech.Trophy.Models;
 using Microsoft.AspNetCore.Mvc;
 using SQLite;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace Andtech.Famehall.Controllers
+namespace Andtech.Trophy.Controllers
 {
 
 	[ApiController]

@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace Andtech.Famehall.Models
+namespace Andtech.Trophy.Models
 {
 
 	[Table("scores")]

@@ -1,4 +1,4 @@
-﻿namespace Andtech.Famehall
+﻿namespace Andtech.Trophy
 {
 
 	public class Session

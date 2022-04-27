@@ -2,7 +2,7 @@
 using Flurl.Http;
 using System.Text.RegularExpressions;
 
-namespace Andtech.Famehall.Controllers
+namespace Andtech.Trophy.Controllers
 {
 	internal class ProfanityFilter
 	{

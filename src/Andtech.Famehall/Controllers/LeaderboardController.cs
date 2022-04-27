@@ -11,7 +11,7 @@ namespace Andtech.Famehall.Controllers
 	[Route("api/leaderboards")]
 	public class LeaderboardController : ControllerBase
 	{
-		private string databasePath = "players.db";
+		private string databasePath = "data/leaderboard.db";
 		private ProfanityFilter profanityFilter;
 
 		public LeaderboardController()

@@ -7,7 +7,7 @@ services:
       - 5000:5000
     restart: always
     environment:
-      AUTH_TOKEN: secret
+      AUTH_KEY: secret
 
 volumes:
   trophy:

@@ -10,7 +10,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  Deploy (GitHub):
+  deploy-github:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -31,7 +31,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-  Deploy (Docker Hub):
+  deploy-docker_hub:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3      

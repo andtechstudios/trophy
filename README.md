@@ -1,1 +1,1 @@
-[gitpod](https://gitpod.io/#https://github.com/andtechstudios/famehall)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/andtechstudios/trophy)

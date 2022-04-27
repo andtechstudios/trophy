@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build . -t famehall
+docker build . -t trophy

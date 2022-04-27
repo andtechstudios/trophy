@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker run -it -p 5000:5000 famehall
+docker run -it -p 5000:5000 trophy

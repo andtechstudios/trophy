@@ -11,5 +11,5 @@ WORKDIR /app
 COPY --from=build /app ./
 RUN rm /app/appsettings.Development.json
 
-EXPOSE 5000
-ENTRYPOINT ["/app/Andtech.Trophy", "--urls", "http://0.0.0.0:5000"]
+EXPOSE 8080
+ENTRYPOINT ["/app/Andtech.Trophy", "--urls", "http://0.0.0.0:8080"]

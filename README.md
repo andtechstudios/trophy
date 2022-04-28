@@ -1,4 +1,6 @@
-Simple leaderboard server with profanity filtering.
+*Simple leaderboard server with profanity filtering.*
+
+[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://marketplace.digitalocean.com/apps/docker)
 
 ## Anonymous names
 The API is designed for leaderboards with anonymous players (i.e. players won't need an account to appear on the leaderboard). In order to mitigate abuse, usernames are processed as follows:

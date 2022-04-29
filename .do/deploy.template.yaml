@@ -5,7 +5,3 @@ spec:
     git:
       branch: master
       repo_clone_url: https://github.com/andtechstudios/trophy.git
-  - envs:
-    - key: AUTH_KEY
-      value: "secret"
-      type: SECRET

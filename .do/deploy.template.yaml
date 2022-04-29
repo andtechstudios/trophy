@@ -2,10 +2,9 @@ spec:
   name: trophy
   services:
   - name: leaderboard
-    image:
-      registry_type: DOCKER_HUB
-      registry: registry.hub.docker.com
-      repository: andtechstudios/trophy
+    git:
+      branch: master
+      repo_clone_url: https://github.com/andtechstudios/trophy
   - envs:
     - key: AUTH_KEY
       value: "secret"

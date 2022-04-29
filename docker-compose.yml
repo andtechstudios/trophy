@@ -1,6 +1,6 @@
 services:
   web:
-    image: ghcr.io/andtechstudios/trophy
+    image: andtechstudios/trophy
     volumes:
       - trophy:/app/data
     ports:

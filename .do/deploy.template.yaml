@@ -1,0 +1,12 @@
+spec:
+  name: trophy
+  services:
+  - name: leaderboard
+    image:
+      registry_type: DOCKER_HUB
+      registry: docker.io
+      repository: andtechstudios/trophy
+  - envs:
+    - key: AUTH_KEY
+      value: "secret"
+      type: SECRET

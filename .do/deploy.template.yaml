@@ -4,5 +4,5 @@ spec:
   - name: leaderboard
     image:
       registry_type: DOCKER_HUB
-      registry: docker.io
+      registry: registry.hub.docker.com
       repository: andtechstudios/trophy

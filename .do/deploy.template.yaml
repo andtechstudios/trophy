@@ -1,12 +1,13 @@
 spec:
   name: trophy
   services:
-  - name: leaderboards
-    image:
-      registry_type: DOCKER_HUB
-      registry: andtechstudios
-      repository: trophy
   - envs:
     - key: AUTH_KEY
-      scope: SECRET
+      scope: RUN_AND_BUILD_TIME
+      type: SECRET
       value: secret
+    image:
+      registry: andtechstudios
+      registry_type: DOCKER_HUB
+      repository: trophy
+    name: andtechstudios-trophy

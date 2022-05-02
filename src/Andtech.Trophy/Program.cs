@@ -1,5 +1,5 @@
+using Andtech.Common.Http;
 using Andtech.Trophy;
-using Andtech.Trophy.Middleware;
 
 Session.Instance = new Session();
 
@@ -27,10 +27,10 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Require authorization
-app.UseMiddleware<ApiKeyMiddleware>();
-
 if (Session.Instance.HasApiKey)
 {
+	app.UseMiddleware<ApiKeyMiddleware>();
+	ApiKeyMiddleware.TestApiKey = x => x == Session.Instance.ApiKey;
 	Console.WriteLine("Api Key detected. Authentication is enabled!");
 }
 else

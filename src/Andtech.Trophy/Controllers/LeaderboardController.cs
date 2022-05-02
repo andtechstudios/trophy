@@ -31,6 +31,7 @@ namespace Andtech.Trophy.Controllers
 			using (var connection = new SQLiteConnection(databasePath))
 			{
 				scores = connection.Table<Score>()
+					.OrderByDescending(x => x.Points)
 					.Take(count)
 					.ToArray();
 			}

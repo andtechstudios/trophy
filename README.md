@@ -1,4 +1,4 @@
-[![Docker Image Version (latest by date)](https://img.shields.io/docker/v/andtechstudios/trophy?logo=docker)](https://hub.docker.com/repository/docker/andtechstudios/trophy)
+[![Docker Image Version (latest by date)](https://img.shields.io/docker/v/andtechstudios/trophy?logo=docker)](https://hub.docker.com/r/andtechstudios/trophy)
 
 [![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/andtechstudios/trophy/tree/master)
 

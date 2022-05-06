@@ -4,10 +4,10 @@ services:
     volumes:
       - trophy:/app/data
     ports:
-      - 5000:5000
+      - 8080:8080
     restart: always
     environment:
-      AUTH_KEY: secret
+      AUTH_KEY: 
 
 volumes:
   trophy:
